@@ -670,61 +670,322 @@
   <wsdl:message name="HelloWorldResponse">
     <wsdl:part name="response" element="tns:HelloWorldResponse" />
   </wsdl:message>
-        
-  <wsdl:portType name="TimeWriterServicePort">
-    <wsdl:operation name="Login">
-      <wsdl:input message="tns:LoginRequest"/>
-      <wsdl:output message="tns:LoginResponse"/>
-    </wsdl:operation>
-    <wsdl:operation name="Logout">
-      <wsdl:input message="tns:LogoutRequest"/>
-    </wsdl:operation>
-        
-    <wsdl:operation name="GetAspects">
-      <wsdl:input message="tns:GetAspectsRequest"/>
-      <wsdl:output message="tns:GetAspectsResponse"/>
-    </wsdl:operation>
-    <wsdl:operation name="UpdateAspect">
-      <wsdl:input message="tns:UpdateAspectRequest"/>
-      <wsdl:output message="tns:UpdateAspectResponse"/>
-    </wsdl:operation>      
-    <wsdl:operation name="DeleteAspect">
-      <wsdl:input message="tns:DeleteAspectRequest"/>
-      <wsdl:output message="tns:DeleteAspectResponse"/>
-    </wsdl:operation>      
-    
-    <wsdl:operation name="GetRelations">
-      <wsdl:input message="tns:GetRelationsRequest"/>
-      <wsdl:output message="tns:GetRelationsResponse"/>
-    </wsdl:operation>
-    <wsdl:operation name="UpdateRelation">
-      <wsdl:input message="tns:UpdateRelationRequest"/>
-      <wsdl:output message="tns:UpdateRelationResponse"/>
-    </wsdl:operation>      
-    <wsdl:operation name="DeleteRelation">
-      <wsdl:input message="tns:DeleteRelationRequest"/>
-      <wsdl:output message="tns:DeleteRelationResponse"/>
-    </wsdl:operation>      
-              
-    <wsdl:operation name="GetBookings">
-      <wsdl:input message="tns:GetBookingsRequest"/>
-      <wsdl:output message="tns:GetBookingsResponse"/>
-    </wsdl:operation>
-    <wsdl:operation name="UpdateBooking">
-      <wsdl:input message="tns:UpdateBookingRequest"/>
-      <wsdl:output message="tns:UpdateBookingResponse"/>
-    </wsdl:operation>          
-    <wsdl:operation name="DeleteBooking">
-      <wsdl:input message="tns:DeleteBookingRequest"/>
-      <wsdl:output message="tns:DeleteBookingResponse"/>
-    </wsdl:operation>        
-    
+
+  <!-- Start HelloWorld method -->
+  <wsdl:portType name="HelloWorldServicePort">
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldRequest" />
       <wsdl:output message="tns:HelloWorldResponse" />
     </wsdl:operation>
   </wsdl:portType>
-  <wsdl:binding name="TimeWriterAPI" type="tns:TimeWriterServicePort">
+
+  <wsdl:binding name="HelloWorldAPI" type="tns:HelloWorldServicePort">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" wsdl:required="false"/>
+    <wsdl:operation name="HelloWorld">
+      <soap:operation soapAction="HelloWorld" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+
+  <wsdl:service name="HelloWorldService">
+    <wsdl:port binding="tns:HelloWorldAPI" name="HelloWorldServicePort">
+      <soap:address location="#SOAP_URL#helloWorld"/>
+    </wsdl:port>
+  </wsdl:service>
+  <!-- End HelloWorld method -->
+
+  <!-- Start DeleteBooking method -->
+  <wsdl:portType name="DeleteBookingServicePort">
+        <wsdl:operation name="DeleteBooking">
+          <wsdl:input message="tns:DeleteBookingRequest"/>
+          <wsdl:output message="tns:DeleteBookingResponse"/>
+        </wsdl:operation>
+  </wsdl:portType>
+
+  <wsdl:binding name="DeleteBookingAPI" type="tns:DeleteBookingServicePort">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" wsdl:required="false"/>
+    <wsdl:operation name="DeleteBooking">
+      <soap:operation soapAction="DeleteBooking" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+
+  <wsdl:service name="DeleteBookingService">
+    <wsdl:port binding="tns:DeleteBookingAPI" name="DeleteBookingServicePort">
+      <soap:address location="#SOAP_URL#deleteBooking"/>
+    </wsdl:port>
+  </wsdl:service>
+  <!-- End DeleteBooking method -->
+
+  <!-- Start UpdateBooking method -->
+  <wsdl:portType name="UpdateBookingServicePort">
+    <wsdl:operation name="UpdateBooking">
+      <wsdl:input message="tns:UpdateBookingRequest"/>
+      <wsdl:output message="tns:UpdateBookingResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+
+  <wsdl:binding name="UpdateBookingAPI" type="tns:UpdateBookingServicePort">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" wsdl:required="false"/>
+    <wsdl:operation name="UpdateBooking">
+      <soap:operation soapAction="UpdateBooking" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+
+  <wsdl:service name="UpdateBookingService">
+    <wsdl:port binding="tns:UpdateBookingAPI" name="UpdateBookingServicePort">
+      <soap:address location="#SOAP_URL#updateBooking"/>
+    </wsdl:port>
+  </wsdl:service>
+  <!-- End UpdateBooking method -->
+
+  <!-- Start GetBookings method -->
+  <wsdl:portType name="GetBookingsServicePort">
+    <wsdl:operation name="GetBookings">
+      <wsdl:input message="tns:GetBookingsRequest"/>
+      <wsdl:output message="tns:GetBookingsResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+
+  <wsdl:binding name="GetBookingsAPI" type="tns:GetBookingsServicePort">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" wsdl:required="false"/>
+    <wsdl:operation name="GetBookings">
+      <soap:operation soapAction="GetBookings" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+
+  <wsdl:service name="GetBookingsService">
+    <wsdl:port binding="tns:GetBookingsAPI" name="GetBookingsServicePort">
+      <soap:address location="#SOAP_URL#getBookings"/>
+    </wsdl:port>
+  </wsdl:service>
+  <!-- End GetBookings method -->
+
+  <!-- Start DeleteRelation method -->
+  <wsdl:portType name="DeleteRelationServicePort">
+    <wsdl:operation name="DeleteRelation">
+      <wsdl:input message="tns:DeleteRelationRequest"/>
+      <wsdl:output message="tns:DeleteRelationResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+
+  <wsdl:binding name="DeleteRelationAPI" type="tns:DeleteRelationServicePort">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" wsdl:required="false"/>
+    <wsdl:operation name="DeleteRelation">
+      <soap:operation soapAction="DeleteRelation" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+
+  <wsdl:service name="DeleteRelationService">
+    <wsdl:port binding="tns:DeleteRelationAPI" name="DeleteRelationServicePort">
+      <soap:address location="#SOAP_URL#deleteRelation"/>
+    </wsdl:port>
+  </wsdl:service>
+  <!-- End DeleteRelation method -->
+
+  <!-- Start UpdateRelation method -->
+  <wsdl:portType name="UpdateRelationServicePort">
+    <wsdl:operation name="UpdateRelation">
+      <wsdl:input message="tns:UpdateRelationRequest"/>
+      <wsdl:output message="tns:UpdateRelationResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+
+  <wsdl:binding name="UpdateRelationAPI" type="tns:UpdateRelationServicePort">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" wsdl:required="false"/>
+
+  <wsdl:operation name="UpdateRelation">
+    <soap:operation soapAction="UpdateRelation" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+
+  <wsdl:service name="UpdateRelationService">
+    <wsdl:port binding="tns:UpdateRelationAPI" name="UpdateRelationServicePort">
+      <soap:address location="#SOAP_URL#updateRelation"/>
+    </wsdl:port>
+  </wsdl:service>
+  <!-- End UpdateRelation method -->
+
+  <!-- Start GetRelations method -->
+  <wsdl:portType name="GetRelationsServicePort">
+    <wsdl:operation name="GetRelations">
+      <wsdl:input message="tns:GetRelationsRequest"/>
+      <wsdl:output message="tns:GetRelationsResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+
+  <wsdl:binding name="GetRelationsAPI" type="tns:GetRelationsServicePort">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" wsdl:required="false"/>
+    <wsdl:operation name="GetRelations">
+      <soap:operation soapAction="GetRelations" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+
+  <wsdl:service name="GetRelationsService">
+    <wsdl:port binding="tns:GetRelationsAPI" name="GetRelationsServicePort">
+      <soap:address location="#SOAP_URL#getRelations"/>
+    </wsdl:port>
+  </wsdl:service>
+  <!-- End GetRelations method -->
+
+  <!-- Start DeleteAspect method -->
+  <wsdl:portType name="DeleteAspectServicePort">
+    <wsdl:operation name="DeleteAspect">
+      <wsdl:input message="tns:DeleteAspectRequest"/>
+      <wsdl:output message="tns:DeleteAspectResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+
+  <wsdl:binding name="DeleteAspectAPI" type="tns:DeleteAspectServicePort">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" wsdl:required="false"/>
+    <wsdl:operation name="DeleteAspect">
+      <soap:operation soapAction="DeleteAspect" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+
+  <wsdl:service name="DeleteAspectService">
+    <wsdl:port binding="tns:DeleteAspectAPI" name="DeleteAspectServicePort">
+      <soap:address location="#SOAP_URL#deleteAspect"/>
+    </wsdl:port>
+  </wsdl:service>
+  <!-- End DeleteAspect method -->
+
+  <!-- Start UpdateAspect method -->
+  <wsdl:portType name="UpdateAspectServicePort">
+    <wsdl:operation name="UpdateAspect">
+      <wsdl:input message="tns:UpdateAspectRequest"/>
+      <wsdl:output message="tns:UpdateAspectResponse"/>
+    </wsdl:operation>
+
+  </wsdl:portType>
+
+  <wsdl:binding name="UpdateAspectAPI" type="tns:UpdateAspectServicePort">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" wsdl:required="false"/>
+    <wsdl:operation name="UpdateAspect">
+      <soap:operation soapAction="UpdateAspect" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+
+  <wsdl:service name="UpdateAspectService">
+    <wsdl:port binding="tns:UpdateAspectAPI" name="UpdateAspectServicePort">
+      <soap:address location="#SOAP_URL#updateAspect"/>
+    </wsdl:port>
+  </wsdl:service>
+  <!-- End UpdateAspect method -->
+
+  <!-- Start GetAspects method -->
+  <wsdl:portType name="GetAspectsServicePort">
+    <wsdl:operation name="GetAspects">
+      <wsdl:input message="tns:GetAspectsRequest"/>
+      <wsdl:output message="tns:GetAspectsResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+
+  <wsdl:binding name="GetAspectsAPI" type="tns:GetAspectsServicePort">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" wsdl:required="false"/>
+    <wsdl:operation name="GetAspects">
+      <soap:operation soapAction="GetAspects" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+
+  <wsdl:service name="GetAspectsService">
+    <wsdl:port binding="tns:GetAspectsAPI" name="GetAspectsServicePort">
+      <soap:address location="#SOAP_URL#getAspects"/>
+    </wsdl:port>
+  </wsdl:service>
+  <!-- End GetAspects method -->
+
+  <!-- Start Logout method -->
+  <wsdl:portType name="LogoutServicePort">
+    <wsdl:operation name="Logout">
+      <wsdl:input message="tns:LogoutRequest"/>
+    </wsdl:operation>
+  </wsdl:portType>
+
+  <wsdl:binding name="LogoutAPI" type="tns:LogoutServicePort">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" wsdl:required="false"/>
+    <wsdl:operation name="Logout">
+      <soap:operation soapAction="Logout" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+  </wsdl:binding>
+
+  <wsdl:service name="LogoutService">
+    <wsdl:port binding="tns:LogoutAPI" name="LogoutServicePort">
+      <soap:address location="#SOAP_URL#logout"/>
+    </wsdl:port>
+  </wsdl:service>
+  <!-- End Logout method -->
+
+  <!-- Start Login method -->
+  <wsdl:portType name="LoginServicePort">
+    <wsdl:operation name="Login">
+      <wsdl:input message="tns:LoginRequest"/>
+      <wsdl:output message="tns:LoginResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+
+  <wsdl:binding name="LoginAPI" type="tns:LoginServicePort">
     <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" wsdl:required="false"/>
     <wsdl:operation name="Login">
       <soap:operation soapAction="Login" style="document"/>
@@ -735,111 +996,12 @@
         <soap:body use="literal"/>
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Logout">
-      <soap:operation soapAction="Logout" style="document"/>
-      <wsdl:input>
-        <soap:body use="literal"/>
-      </wsdl:input>
-    </wsdl:operation>
-    
-    <wsdl:operation name="GetAspects">
-      <soap:operation soapAction="GetAspects" style="document"/>
-      <wsdl:input>
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="UpdateAspect">
-      <soap:operation soapAction="UpdateAspect" style="document"/>
-      <wsdl:input>
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="DeleteAspect">
-      <soap:operation soapAction="DeleteAspect" style="document"/>
-      <wsdl:input>
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal"/>
-      </wsdl:output>
-    </wsdl:operation>
-    
-    <wsdl:operation name="GetRelations">
-      <soap:operation soapAction="GetRelations" style="document"/>
-      <wsdl:input>
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="UpdateRelation">
-      <soap:operation soapAction="UpdateRelation" style="document"/>
-      <wsdl:input>
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="DeleteRelation">
-      <soap:operation soapAction="DeleteRelation" style="document"/>
-      <wsdl:input>
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal"/>
-      </wsdl:output>
-    </wsdl:operation>
-        
-    <wsdl:operation name="GetBookings">
-      <soap:operation soapAction="GetBookings" style="document"/>
-      <wsdl:input>
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="UpdateBooking">
-      <soap:operation soapAction="UpdateBooking" style="document"/>
-      <wsdl:input>
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal"/>
-      </wsdl:output>
-    </wsdl:operation>    
-    <wsdl:operation name="DeleteBooking">
-      <soap:operation soapAction="DeleteBooking" style="document"/>
-      <wsdl:input>
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal"/>
-      </wsdl:output>
-    </wsdl:operation>
+  </wsdl:binding>
 
-    <wsdl:operation name="HelloWorld">
-      <soap:operation soapAction="HelloWorld" style="document"/>
-      <wsdl:input>
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal"/>
-      </wsdl:output>
-    </wsdl:operation>
-  </wsdl:binding>                  
-                          
-  <wsdl:service name="TimeWriterService">  
-    <wsdl:port binding="tns:TimeWriterAPI" name="TimeWriterServicePort">
-      <soap:address location="#SOAP_URL#"/>
+  <wsdl:service name="LoginService">
+    <wsdl:port binding="tns:LoginAPI" name="LoginServicePort">
+      <soap:address location="#SOAP_URL#login"/>
     </wsdl:port>
-    </wsdl:service>
+  </wsdl:service>
+  <!-- End Login method -->
 </wsdl:definitions>

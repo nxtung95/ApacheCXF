@@ -8,7 +8,7 @@ import org.eclipse.jetty.server.*;
 import org.eclipse.jetty.server.handler.ContextHandlerCollection;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
-import timewriter.soap.api.soap.TimeWriterApi;
+//import timewriter.soap.api.soap.TimeWriterApi;
 import timewriter.soap.api.wsdl.TimeWriterWsdlServlet;
 
 public class TimeWriterServer
@@ -36,10 +36,10 @@ public class TimeWriterServer
       http.setPort( 80 );
       server.addConnector( http );
 
-      TimeWriterApi implementor = new TimeWriterApi();
-      EndpointImpl twApiEndpoint = new EndpointImpl( BindingID.parse( implementor.getClass() ), implementor );
+//      TimeWriterApi implementor = new TimeWriterApi();
+//      EndpointImpl twApiEndpoint = new EndpointImpl( BindingID.parse( implementor.getClass() ), implementor );
 
-      twApiEndpoint.publish( new JettyHttpServer( server, true ).createContext( "/api" ) );//$NON-NLS-1$
+//      twApiEndpoint.publish( new JettyHttpServer( server, true ).createContext( "/api" ) );//$NON-NLS-1$
 
       server.start();
     }

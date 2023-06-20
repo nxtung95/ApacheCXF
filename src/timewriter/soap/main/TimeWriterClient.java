@@ -9,16 +9,19 @@ import java.net.URL;
 
 public class TimeWriterClient
 {
-  private static TimeWriterServicePort port;
+  private static LoginServicePort loginServicePort;
+  private static GetBookingsServicePort getBookingsServicePort;
+  private static UpdateBookingServicePort updateBookingServicePort;
+  private static HelloWorldServicePort helloWorldServicePort;
+
   private static String token;
 
   public static void main( String[] args )
   {
-    try
-    {
-      port = new TimeWriterService( new URL( "http://localhost/wsdl/timewriterapi.wsdl" ) ).getTimeWriterServicePort();
+    try {
+    	loginServicePort = new LoginService( new URL( "http://localhost/wsdl/timewriterapi.wsdl" ) ).getLoginServicePort();
 
-      LoginResult result = port.login( "123", "123", "test" );
+      LoginResult result = loginServicePort.login( "123", "123", "test" );
 
       if ( result.isError() )
       {
@@ -30,16 +33,19 @@ public class TimeWriterClient
 
       System.out.println( "Received securityToken: " + token );
 
-      GetBookingsResult bookings = port.getBookings( token, null, null, null );
+	  getBookingsServicePort = new GetBookingsService(new URL( "http://localhost/wsdl/timewriterapi.wsdl" ) ).getGetBookingsServicePort();
+      GetBookingsResult bookings = getBookingsServicePort.getBookings( token, null, null, null );
       System.out.println( "Number of bookings: " + bookings.getBookingList().getBooking().size() );
 
+      updateBookingServicePort = new UpdateBookingService(new URL( "http://localhost/wsdl/timewriterapi.wsdl" )).getUpdateBookingServicePort();
       Booking booking = new Booking();
-      port.updateBooking( token, booking, false );
+      updateBookingServicePort.updateBooking( token, booking, false );
 
-      bookings = port.getBookings( token, null, null, null );
+      bookings = getBookingsServicePort.getBookings( token, null, null, null );
       System.out.println( "Number of bookings: " + bookings.getBookingList().getBooking().size() );
 
-      String helloRes = port.helloWorld("Rinse");
+      helloWorldServicePort = new HelloWorldService(new URL("http://localhost/wsdl/timewriterapi.wsdl")).getHelloWorldServicePort();
+      String helloRes = helloWorldServicePort.helloWorld("Rinse");
       System.out.println(helloRes);
     }
     catch ( Exception e )
