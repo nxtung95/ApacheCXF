@@ -32,21 +32,18 @@ public class TimeWriterServer
       System.setProperty( "com.sun.net.httpserver.HttpServerProvider", JettyHttpServerProvider.class.getName() ); //$NON-NLS-1$
       JettyHttpServerProvider.setServer( server );
 
+      // ==================== Start SOAP Config Server ====================
       HttpConfiguration http_config = new HttpConfiguration();
       ServerConnector http = new ServerConnector( server, new HttpConnectionFactory( http_config ) );
       http.setPort( 8080 );
       server.addConnector( http );
 
-      // ==================== Start SOAP Config Server ====================
-      ServletContextHandler contextHandler = new ServletContextHandler( ServletContextHandler.SESSIONS | ServletContextHandler.SECURITY );
-      //contextHandler.setInitParameter( "org.eclipse.jetty.servlet.Default.dirAllowed", "false" ); //$NON-NLS-1$ //$NON-NLS-2$
+      ServletContextHandler soapContextHandler = new ServletContextHandler( ServletContextHandler.SESSIONS | ServletContextHandler.SECURITY );
+      soapContextHandler.addServlet( new ServletHolder( new TimeWriterWsdlServlet() ), "/wsdl/timewriterapi.wsdl" );
 
       ContextHandlerCollection contexts = new ContextHandlerCollection();
-
-      contextHandler.addServlet( new ServletHolder( new TimeWriterWsdlServlet() ), "/wsdl/timewriterapi.wsdl" ); //$NON-NLS-1$
-
-      contexts.setHandlers( new Handler[] { contextHandler } );
-      server.setHandler( contexts );
+      contexts.setHandlers( new Handler[] { soapContextHandler } );
+      server.setHandler(contexts);
 
       Endpoint loginEndpoint = Endpoint.create(new LoginApi());
       Endpoint logoutEndpoint = Endpoint.create(new LogoutApi());
@@ -101,18 +98,17 @@ public class TimeWriterServer
       // ==================== End SOAP Config Server ====================
 
     // ==================== Start Rest Config Server ====================
-//      SingletonResourceProvider loginResource = new SingletonResourceProvider(new LoginController());
-//      HttpContext restLoginContext = jettyHttpServer.createContext("/rest/api/login");
+      HttpConfiguration restHttpConfig = new HttpConfiguration();
+      ServerConnector restHttp = new ServerConnector(server, new HttpConnectionFactory(restHttpConfig));
+      restHttp.setPort(8081);
+      server.addConnector(restHttp);
 
-      OpenApiFeature openApiFeature = new OpenApiFeature();
-      openApiFeature.setPrettyPrint(true);
-      Set<String> resourcePackages = new HashSet<>();
-      resourcePackages.add("timewriter.rest");
-      openApiFeature.setResourcePackages(resourcePackages);
-
+//      ServletContextHandler restContextHandler = new ServletContextHandler( ServletContextHandler.SESSIONS | ServletContextHandler.SECURITY );
+//      ServletHolder restServlet = restContextHandler.addServlet(ServletContainer.class, "/rest/api/");
+//      restServlet.setInitOrder(0);
+//      restServlet.setInitParameter("jersey.config.server.provider.classnames", LoginController.class.getCanonicalName());
 
     // ==================== End Rest Config Server ====================
-
 
       server.start();
       System.out.println("Server started!! " + server.isStarted());
