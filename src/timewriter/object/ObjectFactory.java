@@ -10,7 +10,7 @@ import javax.xml.namespace.QName;
 /**
  * This object contains factory methods for each 
  * Java content interface and Java element interface 
- * generated in the nl.timewriter.api package. 
+ * generated in the nl.soap.timewriter.api package. 
  * <p>An ObjectFactory allows you to programatically 
  * construct new instances of the Java representation 
  * for XML content. The Java representation of XML 
@@ -24,10 +24,12 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _LogoutResponse_QNAME = new QName("api.timewriter.nl", "LogoutResponse");
+    private final static QName _LogoutResponse_QNAME = new QName("api.timewriter.soap.nl", "LogoutResponse");
+    private final static QName _HelloWorldRequest_QNAME = new QName("api.timewriter.soap.nl", "HelloWorldRequest");
+    private final static QName _HelloWorldResponse_QNAME = new QName("api.timewriter.soap.nl", "HelloWorldResponse");
 
     /**
-     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: nl.timewriter.api
+     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: nl.soap.timewriter.api
      * 
      */
     public ObjectFactory() {
@@ -405,9 +407,27 @@ public class ObjectFactory {
      * Create an instance of {@link JAXBElement }{@code <}{@link Object }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "api.timewriter.nl", name = "LogoutResponse")
+    @XmlElementDecl(namespace = "api.timewriter.soap.nl", name = "LogoutResponse")
     public JAXBElement<Object> createLogoutResponse(Object value) {
         return new JAXBElement<Object>(_LogoutResponse_QNAME, Object.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "api.timewriter.soap.nl", name = "HelloWorldRequest")
+    public JAXBElement<String> createHelloWorldRequest(String value) {
+        return new JAXBElement<String>(_HelloWorldRequest_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "api.timewriter.soap.nl", name = "HelloWorldResponse")
+    public JAXBElement<String> createHelloWorldResponse(String value) {
+        return new JAXBElement<String>(_HelloWorldResponse_QNAME, String.class, null, value);
     }
 
 }

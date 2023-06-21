@@ -18,7 +18,7 @@ public class TimeWriterWsdlServlet extends HttpServlet
     String wsdl = loadTextFile( "timewriterapi.wsdl" );
 
     // our server must run on different domains, but the wsdl must contain the right domain.. replace the "#SOAP_URL#"
-    wsdl = wsdl.replace( "#SOAP_URL#", getRequestUrl( req ) + "/api/" );
+    wsdl = wsdl.replace( "#SOAP_URL#", getRequestUrl( req ) + "/soap/api/" );
 
     sendXML( wsdl, resp );
   }
@@ -26,7 +26,7 @@ public class TimeWriterWsdlServlet extends HttpServlet
   public static String getRequestUrl( HttpServletRequest request )
   {
     String servername = request.getServerName();
-    return request.getScheme() + "://" + servername; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+    return request.getScheme() + "://" + servername + ":8080"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
   }
 
   protected void sendXML( String xmlContent, HttpServletResponse response ) throws IOException

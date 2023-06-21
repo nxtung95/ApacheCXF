@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "DeleteBookingService", targetNamespace = "api.timewriter.soap.nl", wsdlLocation = "http://localhost/wsdl/timewriterapi.wsdl")
+@WebServiceClient(name = "DeleteBookingService", targetNamespace = "api.timewriter.soap.nl", wsdlLocation = "http://localhost:8080/wsdl/timewriterapi.wsdl")
 public class DeleteBookingService
     extends Service
 {
@@ -30,7 +30,7 @@ public class DeleteBookingService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("http://localhost/wsdl/timewriterapi.wsdl");
+            url = new URL("http://localhost:8080/wsdl/timewriterapi.wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }

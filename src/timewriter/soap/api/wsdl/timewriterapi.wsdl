@@ -591,8 +591,21 @@
         </xsd:sequence>
       </xsd:complexType>
 
-      <xsd:element name="HelloWorldRequest" type="xsd:string"></xsd:element>
-      <xsd:element name="HelloWorldResponse" type="xsd:string"></xsd:element>
+      <xsd:element name="HelloWorldRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="request" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="HelloWorldResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="response" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
 
     </xsd:schema>
   </wsdl:types>

@@ -1,7 +1,12 @@
 
 package timewriter.object;
 
-import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSchemaType;
+import javax.xml.bind.annotation.XmlType;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 
@@ -13,11 +18,11 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
- *     &lt;extension base="{api.timewriter.nl}Request">
+ *     &lt;extension base="{api.timewriter.soap.nl}Request">
  *       &lt;sequence>
  *         &lt;element name="startDate" type="{http://www.w3.org/2001/XMLSchema}date"/>
  *         &lt;element name="endDate" type="{http://www.w3.org/2001/XMLSchema}date"/>
- *         &lt;element name="filters" type="{api.timewriter.nl}Filters" minOccurs="0"/>
+ *         &lt;element name="filters" type="{api.timewriter.soap.nl}Filters" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/extension>
  *   &lt;/complexContent>

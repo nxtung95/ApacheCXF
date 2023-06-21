@@ -9,11 +9,9 @@ import timewriter.soap.api.UpdateBookingServicePort;
 
 import javax.jws.WebService;
 
-@WebService( name = "LoginService", targetNamespace = "nl.timewriter.api", endpointInterface = "timewriter.soap.api.UpdateBookingServicePort" )
+@WebService( name = "UpdateBookingService", targetNamespace = "nl.timewriter.api", endpointInterface = "timewriter.soap.api.UpdateBookingServicePort" )
 public class UpdateBookingsApi implements UpdateBookingServicePort
 {
-//  private static ArrayList<Booking> _bookings;
-
 
   @Override
   public UpdateBookingResult updateBooking(String securityToken, Booking booking, boolean roundTimes) {

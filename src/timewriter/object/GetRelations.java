@@ -1,7 +1,11 @@
 
 package timewriter.object;
 
-import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
 
 /**
@@ -12,12 +16,12 @@ import javax.xml.bind.annotation.*;
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
- *     &lt;extension base="{api.timewriter.nl}Request">
+ *     &lt;extension base="{api.timewriter.soap.nl}Request">
  *       &lt;sequence>
  *         &lt;element name="id1" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="id2" type="{http://www.w3.org/2001/XMLSchema}long"/>
- *         &lt;element name="relationType" type="{api.timewriter.nl}RelationTypeString"/>
- *         &lt;element name="filters" type="{api.timewriter.nl}Filters" minOccurs="0"/>
+ *         &lt;element name="relationType" type="{api.timewriter.soap.nl}RelationTypeString"/>
+ *         &lt;element name="filters" type="{api.timewriter.soap.nl}Filters" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/extension>
  *   &lt;/complexContent>

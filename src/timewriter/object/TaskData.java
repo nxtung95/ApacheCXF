@@ -24,9 +24,9 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="budget" type="{http://www.w3.org/2001/XMLSchema}float" minOccurs="0"/>
  *         &lt;element name="invoiceable" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *         &lt;element name="useInvoicing" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
- *         &lt;element name="invoiceType" type="{api.timewriter.nl}TaskInvoiceTypeString" minOccurs="0"/>
+ *         &lt;element name="invoiceType" type="{api.timewriter.soap.nl}TaskInvoiceTypeString" minOccurs="0"/>
  *         &lt;element name="price" type="{http://www.w3.org/2001/XMLSchema}float" minOccurs="0"/>
- *         &lt;element name="recurringPattern" type="{api.timewriter.nl}RecurringPattern" minOccurs="0"/>
+ *         &lt;element name="recurringPattern" type="{api.timewriter.soap.nl}RecurringPattern" minOccurs="0"/>
  *         &lt;element name="id_GR_MED" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="id_IT_AT1" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="id_IT_AT2" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>

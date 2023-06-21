@@ -15,9 +15,9 @@ import javax.xml.bind.annotation.XmlType;
  * <pre>
  * &lt;complexType name="UpdateAspectResult">
  *   &lt;complexContent>
- *     &lt;extension base="{api.timewriter.nl}RequestResult">
+ *     &lt;extension base="{api.timewriter.soap.nl}RequestResult">
  *       &lt;sequence>
- *         &lt;element name="aspect" type="{api.timewriter.nl}Aspect"/>
+ *         &lt;element name="aspect" type="{api.timewriter.soap.nl}Aspect"/>
  *       &lt;/sequence>
  *     &lt;/extension>
  *   &lt;/complexContent>

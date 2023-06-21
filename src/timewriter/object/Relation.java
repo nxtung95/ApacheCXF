@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element name="id1" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="id2" type="{http://www.w3.org/2001/XMLSchema}long"/>
- *         &lt;element name="relationType" type="{api.timewriter.nl}RelationTypeString" minOccurs="0"/>
+ *         &lt;element name="relationType" type="{api.timewriter.soap.nl}RelationTypeString" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>

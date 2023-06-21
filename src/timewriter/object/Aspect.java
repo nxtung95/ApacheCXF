@@ -1,7 +1,11 @@
 
 package timewriter.object;
 
-import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlSchemaType;
+import javax.xml.bind.annotation.XmlType;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 
@@ -16,7 +20,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
- *         &lt;element name="aspectType" type="{api.timewriter.nl}AspectTypeString"/>
+ *         &lt;element name="aspectType" type="{api.timewriter.soap.nl}AspectTypeString"/>
  *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="category" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="abbreviation" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -32,9 +36,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="notForTariffAgreements" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *         &lt;element name="notForBudgets" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *         &lt;element name="notForProgramModules" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
- *         &lt;element name="invoiceData" type="{api.timewriter.nl}InvoiceData" minOccurs="0"/>
- *         &lt;element name="taskData" type="{api.timewriter.nl}TaskData" minOccurs="0"/>
- *         &lt;element name="userFieldList" type="{api.timewriter.nl}UserFieldList" minOccurs="0"/>
+ *         &lt;element name="invoiceData" type="{api.timewriter.soap.nl}InvoiceData" minOccurs="0"/>
+ *         &lt;element name="taskData" type="{api.timewriter.soap.nl}TaskData" minOccurs="0"/>
+ *         &lt;element name="userFieldList" type="{api.timewriter.soap.nl}UserFieldList" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>

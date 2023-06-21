@@ -1,10 +1,11 @@
 
 package timewriter.object;
 
-import timewriter.object.Booking;
-import timewriter.object.Request;
-
-import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
 
 /**
@@ -15,9 +16,9 @@ import javax.xml.bind.annotation.*;
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
- *     &lt;extension base="{api.timewriter.nl}Request">
+ *     &lt;extension base="{api.timewriter.soap.nl}Request">
  *       &lt;sequence>
- *         &lt;element name="booking" type="{api.timewriter.nl}Booking"/>
+ *         &lt;element name="booking" type="{api.timewriter.soap.nl}Booking"/>
  *         &lt;element name="roundTimes" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *       &lt;/sequence>
  *     &lt;/extension>

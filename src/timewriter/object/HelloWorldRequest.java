@@ -16,11 +16,11 @@ import javax.xml.bind.annotation.XmlType;
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
- *     &lt;extension base="{api.timewriter.soap.nl}Request">
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="relation" type="{api.timewriter.soap.nl}Relation"/>
+ *         &lt;element name="request" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
- *     &lt;/extension>
+ *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
@@ -29,38 +29,36 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "relation"
+    "request"
 })
-@XmlRootElement(name = "UpdateRelation")
-public class UpdateRelation
-    extends Request
-{
+@XmlRootElement(name = "HelloWorldRequest")
+public class HelloWorldRequest {
 
     @XmlElement(required = true)
-    protected Relation relation;
+    protected String request;
 
     /**
-     * Gets the value of the relation property.
+     * Gets the value of the request property.
      * 
      * @return
      *     possible object is
-     *     {@link Relation }
+     *     {@link String }
      *     
      */
-    public Relation getRelation() {
-        return relation;
+    public String getRequest() {
+        return request;
     }
 
     /**
-     * Sets the value of the relation property.
+     * Sets the value of the request property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Relation }
+     *     {@link String }
      *     
      */
-    public void setRelation(Relation value) {
-        this.relation = value;
+    public void setRequest(String value) {
+        this.request = value;
     }
 
 }

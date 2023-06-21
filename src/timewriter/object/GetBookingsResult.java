@@ -15,9 +15,9 @@ import javax.xml.bind.annotation.XmlType;
  * <pre>
  * &lt;complexType name="GetBookingsResult">
  *   &lt;complexContent>
- *     &lt;extension base="{api.timewriter.nl}RequestResult">
+ *     &lt;extension base="{api.timewriter.soap.nl}RequestResult">
  *       &lt;sequence>
- *         &lt;element name="bookingList" type="{api.timewriter.nl}BookingList"/>
+ *         &lt;element name="bookingList" type="{api.timewriter.soap.nl}BookingList"/>
  *       &lt;/sequence>
  *     &lt;/extension>
  *   &lt;/complexContent>
