@@ -8,7 +8,7 @@ import timewriter.object.Logout;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
-@Path("/api")
+@Path("/rest/api")
 public class LoginController extends BaseController {
 
     @POST

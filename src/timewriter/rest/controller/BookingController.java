@@ -7,7 +7,7 @@ import javax.ws.rs.core.MediaType;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-@Path("/api/booking")
+@Path("/rest/api/booking")
 public class BookingController extends BaseController {
     private static ArrayList<Booking> _bookings;
 

@@ -2,16 +2,25 @@ package timewriter.main;
 
 import com.sun.net.httpserver.HttpContext;
 import com.sun.net.httpserver.HttpServer;
+import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
+import org.apache.cxf.jaxrs.lifecycle.SingletonResourceProvider;
+import org.apache.cxf.jaxrs.openapi.OpenApiFeature;
 import org.eclipse.jetty.http.spi.JettyHttpServer;
 import org.eclipse.jetty.http.spi.JettyHttpServerProvider;
 import org.eclipse.jetty.server.*;
 import org.eclipse.jetty.server.handler.ContextHandlerCollection;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
+import timewriter.rest.controller.AspectController;
+import timewriter.rest.controller.BookingController;
+import timewriter.rest.controller.LoginController;
+import timewriter.rest.controller.RelationController;
 import timewriter.soap.api.soap.*;
 import timewriter.soap.api.wsdl.TimeWriterWsdlServlet;
 
 import javax.xml.ws.Endpoint;
+import java.util.HashSet;
+import java.util.Set;
 
 public class TimeWriterServer
 {
@@ -92,10 +101,21 @@ public class TimeWriterServer
       // ==================== End SOAP Config Server ====================
 
     // ==================== Start Rest Config Server ====================
+//      SingletonResourceProvider loginResource = new SingletonResourceProvider(new LoginController());
+//      HttpContext restLoginContext = jettyHttpServer.createContext("/rest/api/login");
+
+      OpenApiFeature openApiFeature = new OpenApiFeature();
+      openApiFeature.setPrettyPrint(true);
+      Set<String> resourcePackages = new HashSet<>();
+      resourcePackages.add("timewriter.rest");
+      openApiFeature.setResourcePackages(resourcePackages);
+
 
     // ==================== End Rest Config Server ====================
 
+
       server.start();
+      System.out.println("Server started!! " + server.isStarted());
     }
     catch ( Exception e )
     {

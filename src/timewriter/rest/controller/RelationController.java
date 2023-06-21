@@ -5,7 +5,7 @@ import timewriter.object.*;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
-@Path("/api/relation")
+@Path("/rest/api/relation")
 public class RelationController extends BaseController {
     @Path("")
     @GET

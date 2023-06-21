@@ -6,7 +6,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
 
-@Path("/api/aspect")
+@Path("/rest/api/aspect")
 public class AspectController extends BaseController {
     @Path("")
     @GET
