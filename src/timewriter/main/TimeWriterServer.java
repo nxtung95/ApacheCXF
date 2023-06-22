@@ -11,6 +11,8 @@ import org.eclipse.jetty.server.*;
 import org.eclipse.jetty.server.handler.ContextHandlerCollection;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
+import org.glassfish.jersey.jetty.JettyHttpContainerFactory;
+import org.glassfish.jersey.server.ResourceConfig;
 import timewriter.rest.controller.AspectController;
 import timewriter.rest.controller.BookingController;
 import timewriter.rest.controller.LoginController;
@@ -18,7 +20,9 @@ import timewriter.rest.controller.RelationController;
 import timewriter.soap.api.soap.*;
 import timewriter.soap.api.wsdl.TimeWriterWsdlServlet;
 
+import javax.ws.rs.core.UriBuilder;
 import javax.xml.ws.Endpoint;
+import java.net.URI;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -26,23 +30,26 @@ public class TimeWriterServer
 {
   public static void main( String[] args )
   {
-    Server server = new Server();
+    URI baseUri = UriBuilder
+            .fromUri("http://localhost/")
+            .port(8080)
+            .build();
+    ResourceConfig config = new ResourceConfig(LoginController.class);
+//    Server server = new Server(8080);
     try
     {
-      System.setProperty( "com.sun.net.httpserver.HttpServerProvider", JettyHttpServerProvider.class.getName() ); //$NON-NLS-1$
-      JettyHttpServerProvider.setServer( server );
+      Server server = JettyHttpContainerFactory.createServer(baseUri, config, false);
+
+//      System.setProperty( "com.sun.net.httpserver.HttpServerProvider", JettyHttpServerProvider.class.getName() ); //$NON-NLS-1$
+//      JettyHttpServerProvider.setServer( server );
 
       // ==================== Start SOAP Config Server ====================
-      HttpConfiguration http_config = new HttpConfiguration();
-      ServerConnector http = new ServerConnector( server, new HttpConnectionFactory( http_config ) );
-      http.setPort( 8080 );
-      server.addConnector( http );
 
-      ServletContextHandler soapContextHandler = new ServletContextHandler( ServletContextHandler.SESSIONS | ServletContextHandler.SECURITY );
-      soapContextHandler.addServlet( new ServletHolder( new TimeWriterWsdlServlet() ), "/wsdl/timewriterapi.wsdl" );
-
+//      ServletContextHandler soapContextHandler = new ServletContextHandler(null, "/", ServletContextHandler.SESSIONS);
+//      soapContextHandler.addServlet( new ServletHolder( new TimeWriterWsdlServlet() ), "/wsdl/timewriterapi.wsdl" );
+//
       ContextHandlerCollection contexts = new ContextHandlerCollection();
-      contexts.setHandlers( new Handler[] { soapContextHandler } );
+//      contexts.setHandlers( new Handler[] { soapContextHandler } );
       server.setHandler(contexts);
 
       Endpoint loginEndpoint = Endpoint.create(new LoginApi());
@@ -62,7 +69,7 @@ public class TimeWriterServer
       Endpoint deleteRelationEndpoint = Endpoint.create(new DeleteRelationApi());
 
 
-      HttpServer jettyHttpServer = new JettyHttpServer(server, true);
+      HttpServer jettyHttpServer = new JettyHttpServer(server.getServer(), true);
       HttpContext loginServerContext = jettyHttpServer.createContext("/soap/api/login");
       HttpContext logoutServerContext = jettyHttpServer.createContext("/soap/api/logout");
       HttpContext helloServerContext = jettyHttpServer.createContext("/soap/api/helloWorld");
@@ -98,15 +105,6 @@ public class TimeWriterServer
       // ==================== End SOAP Config Server ====================
 
     // ==================== Start Rest Config Server ====================
-      HttpConfiguration restHttpConfig = new HttpConfiguration();
-      ServerConnector restHttp = new ServerConnector(server, new HttpConnectionFactory(restHttpConfig));
-      restHttp.setPort(8081);
-      server.addConnector(restHttp);
-
-//      ServletContextHandler restContextHandler = new ServletContextHandler( ServletContextHandler.SESSIONS | ServletContextHandler.SECURITY );
-//      ServletHolder restServlet = restContextHandler.addServlet(ServletContainer.class, "/rest/api/");
-//      restServlet.setInitOrder(0);
-//      restServlet.setInitParameter("jersey.config.server.provider.classnames", LoginController.class.getCanonicalName());
 
     // ==================== End Rest Config Server ====================
 

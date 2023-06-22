@@ -1,42 +1,52 @@
 package timewriter.rest.main;
 
-import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
-import org.apache.cxf.endpoint.Server;
-import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
-import org.apache.cxf.jaxrs.lifecycle.SingletonResourceProvider;
-import org.apache.cxf.jaxrs.openapi.OpenApiFeature;
-import timewriter.rest.controller.AspectController;
-import timewriter.rest.controller.BookingController;
+import org.eclipse.jetty.server.Server;
+import org.glassfish.jersey.jetty.JettyHttpContainerFactory;
+import org.glassfish.jersey.server.ResourceConfig;
 import timewriter.rest.controller.LoginController;
-import timewriter.rest.controller.RelationController;
 
-import java.util.HashSet;
-import java.util.Set;
+import javax.ws.rs.core.UriBuilder;
+import java.net.URI;
 
 public class TwApiServer {
     public static void main(String[] args) {
         try {
-            JAXRSServerFactoryBean factoryBean = new JAXRSServerFactoryBean();
-            factoryBean.setResourceProvider(
-                    new SingletonResourceProvider(new LoginController()));
-            factoryBean.setResourceProvider(
-                    new SingletonResourceProvider(new BookingController()));
-            factoryBean.setResourceProvider(
-                    new SingletonResourceProvider(new AspectController()));
-            factoryBean.setResourceProvider(
-                    new SingletonResourceProvider(new RelationController()));
+            URI baseUri = UriBuilder.fromUri("http://localhost/").port(8080).build();
+            ResourceConfig config = new ResourceConfig(LoginController.class);
+            Server server = JettyHttpContainerFactory.createServer(baseUri, config);
 
-            OpenApiFeature openApiFeature = new OpenApiFeature();
-            openApiFeature.setPrettyPrint(true);
-            Set<String> resourcePackages = new HashSet<>();
-            resourcePackages.add("timewriter.rest");
-            openApiFeature.setResourcePackages(resourcePackages);
+//            JaxWsServerFactoryBean soapServerBean = new JaxWsServerFactoryBean();
+//            soapServerBean.setWsdlLocation("/timewriter/soap/api/wsdl/timewriterapi.wsdl");
 
-            factoryBean.getFeatures().add(openApiFeature);
-            factoryBean.setAddress("http://localhost:8080/");
-            factoryBean.setProvider(new JacksonJsonProvider());
-            Server server = factoryBean.create();
-            System.out.println("Server started!! " + server.isStarted());
+//            HelloWorldServicePort helloWorldService = new HelloWorldApi();
+//            soapServerBean.setServiceClass(HelloWorldApi.class);
+//            soapServerBean.setServiceBean(helloWorldService);
+//            soapServerBean.setAddress("http://localhost:8080/soap/api/helloWorld");
+//
+//            Server server = soapServerBean.create();
+//            System.out.println("Server started!! " + server.isStarted());
+
+//            JAXRSServerFactoryBean factoryBean = new JAXRSServerFactoryBean();
+//            factoryBean.setResourceProvider(
+//                    new SingletonResourceProvider(new LoginController()));
+//            factoryBean.setResourceProvider(
+//                    new SingletonResourceProvider(new BookingController()));
+//            factoryBean.setResourceProvider(
+//                    new SingletonResourceProvider(new AspectController()));
+//            factoryBean.setResourceProvider(
+//                    new SingletonResourceProvider(new RelationController()));
+//
+//            OpenApiFeature openApiFeature = new OpenApiFeature();
+//            openApiFeature.setPrettyPrint(true);
+//            Set<String> resourcePackages = new HashSet<>();
+//            resourcePackages.add("timewriter.rest");
+//            openApiFeature.setResourcePackages(resourcePackages);
+//
+//            factoryBean.getFeatures().add(openApiFeature);
+//            factoryBean.setAddress("http://localhost:8080/");
+//            factoryBean.setProvider(new JacksonJsonProvider());
+//            Server server = factoryBean.create();
+//            System.out.println("Server started!! " + server.isStarted());
         } catch ( Exception e ) {
             e.printStackTrace();
         }
