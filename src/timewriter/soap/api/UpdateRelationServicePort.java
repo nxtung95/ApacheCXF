@@ -28,12 +28,12 @@ public interface UpdateRelationServicePort {
      * @param securityToken
      * @param relation
      * @return
-     *     returns nl.soap.timewriter.api.UpdateRelationResult
+     *     returns timewriter.object.UpdateRelationResult
      */
     @WebMethod(operationName = "UpdateRelation", action = "UpdateRelation")
     @WebResult(name = "result", targetNamespace = "")
-    @RequestWrapper(localName = "UpdateRelation", targetNamespace = "api.timewriter.soap.nl", className = "nl.soap.timewriter.api.UpdateRelation")
-    @ResponseWrapper(localName = "UpdateRelationResponse", targetNamespace = "api.timewriter.soap.nl", className = "nl.soap.timewriter.api.UpdateRelationResponse")
+    @RequestWrapper(localName = "UpdateRelation", targetNamespace = "api.timewriter.soap.nl", className = "timewriter.object.UpdateRelation")
+    @ResponseWrapper(localName = "UpdateRelationResponse", targetNamespace = "api.timewriter.soap.nl", className = "timewriter.object.UpdateRelationResponse")
     public UpdateRelationResult updateRelation(
         @WebParam(name = "securityToken", targetNamespace = "")
         String securityToken,

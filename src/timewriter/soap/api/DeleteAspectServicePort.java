@@ -30,12 +30,12 @@ public interface DeleteAspectServicePort {
      * @param securityToken
      * @param id
      * @return
-     *     returns nl.soap.timewriter.api.DeleteAspectResult
+     *     returns timewriter.object.DeleteAspectResult
      */
     @WebMethod(operationName = "DeleteAspect", action = "DeleteAspect")
     @WebResult(name = "result", targetNamespace = "")
-    @RequestWrapper(localName = "DeleteAspect", targetNamespace = "api.timewriter.soap.nl", className = "nl.soap.timewriter.api.DeleteAspect")
-    @ResponseWrapper(localName = "DeleteAspectResponse", targetNamespace = "api.timewriter.soap.nl", className = "nl.soap.timewriter.api.DeleteAspectResponse")
+    @RequestWrapper(localName = "DeleteAspect", targetNamespace = "api.timewriter.soap.nl", className = "timewriter.object.DeleteAspect")
+    @ResponseWrapper(localName = "DeleteAspectResponse", targetNamespace = "api.timewriter.soap.nl", className = "timewriter.object.DeleteAspectResponse")
     public DeleteAspectResult deleteAspect(
         @WebParam(name = "securityToken", targetNamespace = "")
         String securityToken,

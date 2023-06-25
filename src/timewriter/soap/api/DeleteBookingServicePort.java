@@ -28,12 +28,12 @@ public interface DeleteBookingServicePort {
      * @param securityToken
      * @param id
      * @return
-     *     returns nl.soap.timewriter.api.DeleteBookingResult
+     *     returns timewriter.object.DeleteBookingResult
      */
     @WebMethod(operationName = "DeleteBooking", action = "DeleteBooking")
     @WebResult(name = "result", targetNamespace = "")
-    @RequestWrapper(localName = "DeleteBooking", targetNamespace = "api.timewriter.soap.nl", className = "nl.soap.timewriter.api.DeleteBooking")
-    @ResponseWrapper(localName = "DeleteBookingResponse", targetNamespace = "api.timewriter.soap.nl", className = "nl.soap.timewriter.api.DeleteBookingResponse")
+    @RequestWrapper(localName = "DeleteBooking", targetNamespace = "api.timewriter.soap.nl", className = "timewriter.object.DeleteBooking")
+    @ResponseWrapper(localName = "DeleteBookingResponse", targetNamespace = "api.timewriter.soap.nl", className = "timewriter.object.DeleteBookingResponse")
     public DeleteBookingResult deleteBooking(
         @WebParam(name = "securityToken", targetNamespace = "")
         String securityToken,

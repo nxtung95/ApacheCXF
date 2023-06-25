@@ -9,6 +9,8 @@ import javax.jws.WebResult;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 import javax.xml.bind.annotation.XmlSeeAlso;
+import javax.xml.ws.RequestWrapper;
+import javax.xml.ws.ResponseWrapper;
 
 
 /**
@@ -29,12 +31,12 @@ public interface HelloWorldServicePort {
      * 
      * @param request
      * @return
-     *     returns nl.soap.timewriter.api.HelloWorldResponse
+     *     returns timewriter.object.HelloWorldResponse
      */
     @WebMethod(operationName = "HelloWorld", action = "HelloWorld")
-    @WebResult(name = "HelloWorldResponse", targetNamespace = "api.timewriter.soap.nl", partName = "response")
-    public HelloWorldResponse helloWorld(
-        @WebParam(name = "HelloWorldRequest", targetNamespace = "api.timewriter.soap.nl", partName = "request")
-        HelloWorldRequest request);
+    @WebResult(name = "result", targetNamespace = "api.timewriter.soap.nl", partName = "response")
+    @RequestWrapper(localName = "HelloWorldRequest", targetNamespace = "api.timewriter.soap.nl", className = "timewriter.object.HelloWorldRequest")
+    @ResponseWrapper(localName = "HelloWorldResponse", targetNamespace = "api.timewriter.soap.nl", className = "timewriter.object.HelloWorldResponse")
+    public HelloWorldResponse helloWorld(@WebParam(name = "request", targetNamespace = "") String request);
 
 }

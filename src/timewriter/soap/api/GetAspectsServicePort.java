@@ -29,12 +29,12 @@ public interface GetAspectsServicePort {
      * @param aspectType
      * @param filters
      * @return
-     *     returns nl.soap.timewriter.api.GetAspectsResult
+     *     returns timewriter.object.GetAspectsResult
      */
     @WebMethod(operationName = "GetAspects", action = "GetAspects")
     @WebResult(name = "result", targetNamespace = "")
-    @RequestWrapper(localName = "GetAspects", targetNamespace = "api.timewriter.soap.nl", className = "nl.soap.timewriter.api.GetAspects")
-    @ResponseWrapper(localName = "GetAspectsResponse", targetNamespace = "api.timewriter.soap.nl", className = "nl.soap.timewriter.api.GetAspectsResponse")
+    @RequestWrapper(localName = "GetAspects", targetNamespace = "api.timewriter.soap.nl", className = "timewriter.object.GetAspects")
+    @ResponseWrapper(localName = "GetAspectsResponse", targetNamespace = "api.timewriter.soap.nl", className = "timewriter.object.GetAspectsResponse")
     public GetAspectsResult getAspects(
         @WebParam(name = "securityToken", targetNamespace = "")
         String securityToken,

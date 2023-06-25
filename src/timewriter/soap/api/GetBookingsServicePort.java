@@ -31,12 +31,12 @@ public interface GetBookingsServicePort {
      * @param filters
      * @param startDate
      * @return
-     *     returns nl.soap.timewriter.api.GetBookingsResult
+     *     returns timewriter.object.GetBookingsResult
      */
     @WebMethod(operationName = "GetBookings", action = "GetBookings")
     @WebResult(name = "result", targetNamespace = "")
-    @RequestWrapper(localName = "GetBookings", targetNamespace = "api.timewriter.soap.nl", className = "nl.soap.timewriter.api.GetBookings")
-    @ResponseWrapper(localName = "GetBookingsResponse", targetNamespace = "api.timewriter.soap.nl", className = "nl.soap.timewriter.api.GetBookingsResponse")
+    @RequestWrapper(localName = "GetBookings", targetNamespace = "api.timewriter.soap.nl", className = "timewriter.object.GetBookings")
+    @ResponseWrapper(localName = "GetBookingsResponse", targetNamespace = "api.timewriter.soap.nl", className = "timewriter.object.GetBookingsResponse")
     public GetBookingsResult getBookings(
         @WebParam(name = "securityToken", targetNamespace = "")
         String securityToken,

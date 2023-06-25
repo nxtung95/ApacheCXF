@@ -31,12 +31,12 @@ public interface GetRelationsServicePort {
      * @param id1
      * @param filters
      * @return
-     *     returns nl.soap.timewriter.api.GetRelationsResult
+     *     returns timewriter.object.GetRelationsResult
      */
     @WebMethod(operationName = "GetRelations", action = "GetRelations")
     @WebResult(name = "result", targetNamespace = "")
-    @RequestWrapper(localName = "GetRelations", targetNamespace = "api.timewriter.soap.nl", className = "nl.soap.timewriter.api.GetRelations")
-    @ResponseWrapper(localName = "GetRelationsResponse", targetNamespace = "api.timewriter.soap.nl", className = "nl.soap.timewriter.api.GetRelationsResponse")
+    @RequestWrapper(localName = "GetRelations", targetNamespace = "api.timewriter.soap.nl", className = "timewriter.object.GetRelations")
+    @ResponseWrapper(localName = "GetRelationsResponse", targetNamespace = "api.timewriter.soap.nl", className = "timewriter.object.GetRelationsResponse")
     public GetRelationsResult getRelations(
         @WebParam(name = "securityToken", targetNamespace = "")
         String securityToken,

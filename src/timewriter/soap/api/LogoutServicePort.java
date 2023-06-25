@@ -28,7 +28,7 @@ public interface LogoutServicePort {
      */
     @WebMethod(operationName = "Logout", action = "Logout")
     @Oneway
-    @RequestWrapper(localName = "Logout", targetNamespace = "api.timewriter.soap.nl", className = "nl.soap.timewriter.api.Logout")
+    @RequestWrapper(localName = "Logout", targetNamespace = "api.timewriter.soap.nl", className = "timewriter.object.Logout")
     public void logout(
         @WebParam(name = "securityToken", targetNamespace = "")
         String securityToken);

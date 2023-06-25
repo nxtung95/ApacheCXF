@@ -29,12 +29,12 @@ public interface LoginServicePort {
      * @param softwareDesc
      * @param userKey
      * @return
-     *     returns nl.soap.timewriter.api.LoginResult
+     *     returns timewriter.object.LoginResult
      */
     @WebMethod(operationName = "Login", action = "Login")
     @WebResult(name = "result", targetNamespace = "")
-    @RequestWrapper(localName = "Login", targetNamespace = "api.timewriter.soap.nl", className = "nl.soap.timewriter.api.Login")
-    @ResponseWrapper(localName = "LoginResponse", targetNamespace = "api.timewriter.soap.nl", className = "nl.soap.timewriter.api.LoginResponse")
+    @RequestWrapper(localName = "Login", targetNamespace = "api.timewriter.soap.nl", className = "timewriter.object.Login")
+    @ResponseWrapper(localName = "LoginResponse", targetNamespace = "api.timewriter.soap.nl", className = "timewriter.object.LoginResponse")
     public LoginResult login(
         @WebParam(name = "api_key", targetNamespace = "")
         String apiKey,

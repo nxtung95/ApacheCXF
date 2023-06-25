@@ -29,12 +29,12 @@ public interface UpdateBookingServicePort {
      * @param booking
      * @param roundTimes
      * @return
-     *     returns nl.soap.timewriter.api.UpdateBookingResult
+     *     returns timewriter.object.UpdateBookingResult
      */
     @WebMethod(operationName = "UpdateBooking", action = "UpdateBooking")
     @WebResult(name = "result", targetNamespace = "")
-    @RequestWrapper(localName = "UpdateBooking", targetNamespace = "api.timewriter.soap.nl", className = "nl.soap.timewriter.api.UpdateBooking")
-    @ResponseWrapper(localName = "UpdateBookingResponse", targetNamespace = "api.timewriter.soap.nl", className = "nl.soap.timewriter.api.UpdateBookingResponse")
+    @RequestWrapper(localName = "UpdateBooking", targetNamespace = "api.timewriter.soap.nl", className = "timewriter.object.UpdateBooking")
+    @ResponseWrapper(localName = "UpdateBookingResponse", targetNamespace = "api.timewriter.soap.nl", className = "timewriter.object.UpdateBookingResponse")
     public UpdateBookingResult updateBooking(
         @WebParam(name = "securityToken", targetNamespace = "")
         String securityToken,

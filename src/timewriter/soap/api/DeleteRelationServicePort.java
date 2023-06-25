@@ -30,12 +30,12 @@ public interface DeleteRelationServicePort {
      * @param id2
      * @param id1
      * @return
-     *     returns nl.soap.timewriter.api.DeleteRelationResult
+     *     returns timewriter.object.DeleteRelationResult
      */
     @WebMethod(operationName = "DeleteRelation", action = "DeleteRelation")
     @WebResult(name = "result", targetNamespace = "")
-    @RequestWrapper(localName = "DeleteRelation", targetNamespace = "api.timewriter.soap.nl", className = "nl.soap.timewriter.api.DeleteRelation")
-    @ResponseWrapper(localName = "DeleteRelationResponse", targetNamespace = "api.timewriter.soap.nl", className = "nl.soap.timewriter.api.DeleteRelationResponse")
+    @RequestWrapper(localName = "DeleteRelation", targetNamespace = "api.timewriter.soap.nl", className = "timewriter.object.DeleteRelation")
+    @ResponseWrapper(localName = "DeleteRelationResponse", targetNamespace = "api.timewriter.soap.nl", className = "timewriter.object.DeleteRelationResponse")
     public DeleteRelationResult deleteRelation(
         @WebParam(name = "securityToken", targetNamespace = "")
         String securityToken,

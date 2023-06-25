@@ -1,63 +1,69 @@
 package timewriter.main;
 
+//import org.apache.cxf.jaxrs.client.Client;
+
+import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
+import org.apache.cxf.jaxrs.client.WebClient;
 import timewriter.object.*;
-import timewriter.soap.api.*;
 
-import java.net.URL;
+import javax.ws.rs.core.MediaType;
+import java.util.ArrayList;
+import java.util.List;
 
-public class TimeWriterClient
-{
-  private static LoginServicePort loginServicePort;
-  private static GetBookingsServicePort getBookingsServicePort;
-  private static UpdateBookingServicePort updateBookingServicePort;
-  private static HelloWorldServicePort helloWorldServicePort;
+public class TimeWriterClient {
+	public static void main(String[] args) {
+		try
+		{
+			Login loginRequest = new Login();
+			loginRequest.setApiKey("123");
+			loginRequest.setUserKey("123");
+			loginRequest.setSoftwareDesc("test");
 
-  private static String token;
+			List<Object> providers = new ArrayList<>();
+			providers.add(new JacksonJsonProvider());
+			WebClient webClient = WebClient.create("http://localhost:8080", providers );
 
-  public static void main( String[] args )
-  {
-    try {
-      System.out.println( "=============== START SOAP Client ============= ");
-      URL url = new URL("http://localhost:8080/wsdl/timewriterapi.wsdl");
-    	loginServicePort = new LoginService(url).getLoginServicePort();
+			// Login
+			webClient.path("/rest/api/login");
+			webClient.type(MediaType.APPLICATION_JSON);
+			webClient.accept(MediaType.APPLICATION_JSON);
+			LoginResponse result = webClient.post(loginRequest, LoginResponse.class);
+			if ( result.getResult().isError() )
+			{
+				System.err.println( result.getResult().getErrorMessage() );
+				return;
+			}
+			String token = result.getResult().getSecurityToken();
+			System.out.println( "Received securityToken: " + token );
 
-      LoginResult result = loginServicePort.login( "123", "123", "test" );
+			// Get book
+			webClient = WebClient.create("http://localhost:8080", providers );
+			webClient.path("/rest/api/booking");
+			webClient.type(MediaType.APPLICATION_JSON);
+			webClient.accept(MediaType.APPLICATION_JSON);
+			webClient.header("securityToken", token);
+			GetBookingsResponse bookings = webClient.get(GetBookingsResponse.class);
+			System.out.println( "Number of bookings: " + bookings.getResult().getBookingList().getBooking().size() );
 
-      if ( result.isError() )
-      {
-        System.err.println( result.getErrorMessage() );
-        return;
-      }
+			Booking booking = new Booking();
+			UpdateBookingResponse updateResult = webClient.put(booking, UpdateBookingResponse.class);
+			if (updateResult.getResult().isError() ) {
+				System.err.println( updateResult.getResult().getErrorMessage() );
+				return;
+			}
 
-      token = result.getSecurityToken();
+			bookings = webClient.get(GetBookingsResponse.class);
+			System.out.println( "Number of bookings: " + bookings.getResult().getBookingList().getBooking().size() );
 
-      System.out.println( "Received securityToken: " + token );
+			webClient = WebClient.create("http://localhost:8080", providers );
+			webClient.path("/rest/api/hello");
+			String resHello = webClient.query("request", "Rinse").get(String.class);
+			System.out.println(resHello);
 
-	  getBookingsServicePort = new GetBookingsService(url).getGetBookingsServicePort();
-      GetBookingsResult bookings = getBookingsServicePort.getBookings( token, null, null, null );
-      System.out.println( "Number of bookings: " + bookings.getBookingList().getBooking().size() );
-
-      updateBookingServicePort = new UpdateBookingService(url).getUpdateBookingServicePort();
-      Booking booking = new Booking();
-      updateBookingServicePort.updateBooking( token, booking, false );
-
-      bookings = getBookingsServicePort.getBookings( token, null, null, null );
-      System.out.println( "Number of bookings: " + bookings.getBookingList().getBooking().size() );
-
-      helloWorldServicePort = new HelloWorldService(url).getHelloWorldServicePort();
-      HelloWorldRequest rq = new HelloWorldRequest();
-      rq.setRequest("Rinse");
-      HelloWorldResponse res = helloWorldServicePort.helloWorld(rq);
-      System.out.println(res.getResponse());
-      System.out.println( "=============== End SOAP Client ============= ");
-
-      System.out.println( "=============== START Rest Client ============= ");
-      System.out.println( "=============== End Rest Client ============= ");
-    }
-    catch ( Exception e )
-    {
-      e.printStackTrace();
-    }
-
-  }
+		}
+		catch ( Exception e )
+		{
+			e.printStackTrace();
+		}
+	}
 }

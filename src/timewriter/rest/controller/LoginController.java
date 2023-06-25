@@ -1,15 +1,13 @@
 package timewriter.rest.controller;
 
-import timewriter.object.Login;
-import timewriter.object.LoginResponse;
-import timewriter.object.LoginResult;
-import timewriter.object.Logout;
+import timewriter.object.*;
 
+import javax.servlet.http.HttpServlet;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
 @Path("/rest/api")
-public class LoginController extends BaseController {
+public class LoginController extends HttpServlet {
 
     @POST
     @Path("/login")
@@ -44,7 +42,7 @@ public class LoginController extends BaseController {
 
     }
 
-    @Path("/helloWorld")
+    @Path("/hello")
     @GET
     public String helloWorld(@QueryParam("request") String request) {
         return "Hello: " + request;

@@ -30,12 +30,12 @@ public interface UpdateAspectServicePort {
      * @param securityToken
      * @param aspect
      * @return
-     *     returns nl.soap.timewriter.api.UpdateAspectResult
+     *     returns timewriter.object.UpdateAspectResult
      */
     @WebMethod(operationName = "UpdateAspect", action = "UpdateAspect")
     @WebResult(name = "result", targetNamespace = "")
-    @RequestWrapper(localName = "UpdateAspect", targetNamespace = "api.timewriter.soap.nl", className = "nl.soap.timewriter.api.UpdateAspect")
-    @ResponseWrapper(localName = "UpdateAspectResponse", targetNamespace = "api.timewriter.soap.nl", className = "nl.soap.timewriter.api.UpdateAspectResponse")
+    @RequestWrapper(localName = "UpdateAspect", targetNamespace = "api.timewriter.soap.nl", className = "timewriter.object.UpdateAspect")
+    @ResponseWrapper(localName = "UpdateAspectResponse", targetNamespace = "api.timewriter.soap.nl", className = "timewriter.object.UpdateAspectResponse")
     public UpdateAspectResult updateAspect(
         @WebParam(name = "securityToken", targetNamespace = "")
         String securityToken,
